@@ -1,15 +1,20 @@
-import adapter from "@sveltejs/adapter-static";
+import adapterNode from "@sveltejs/adapter-node";
+import adapterStatic from "@sveltejs/adapter-static";
+
+const isRender = process.env.RENDER === "true";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter({
-      pages: "build",
-      assets: "build",
-      fallback: "index.html",
-      precompress: false,
-      strict: false,
-    }),
+    adapter: isRender
+      ? adapterNode()
+      : adapterStatic({
+          pages: "build",
+          assets: "build",
+          fallback: "index.html",
+          precompress: false,
+          strict: false,
+        }),
     paths: {
       base: "",
     },
