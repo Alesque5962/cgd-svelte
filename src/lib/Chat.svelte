@@ -1,14 +1,27 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   let prompt = "";
   let response = "";
   let loading = false;
   let error: string | null = null;
+  let backend_status: { status: string } | undefined = undefined;
+
+  onMount(async () => {
+    // Initial backend status check
+    const response = await fetch("https://cgd-fastapi.onrender.com/health");
+    backend_status = await response.json();
+  });
 
   async function handleSubmit() {
     if (!prompt.trim()) return;
 
     loading = true;
     error = null;
+
+    /* if (backend_status && backend_status.status == "ok") {
+            
+    } */
 
     try {
       console.log("Envoi de la requête à /api/chatMistral");
