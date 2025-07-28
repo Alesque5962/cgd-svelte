@@ -10,6 +10,7 @@
 
   onMount(async () => {
     // Check backend status
+    console.log("API_URL = ", API_URL);
     const response = await fetch(`${API_URL}/health`);
     backend_status = await response.json();
     console.log("Backend status:", backend_status);
