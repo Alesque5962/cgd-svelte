@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { API_URL } from "$lib/config";
 
   let prompt = "";
   let response = "";
@@ -8,9 +9,16 @@
   let backend_status: { status: string } | undefined = undefined;
 
   onMount(async () => {
-    // Initial backend status check
-    const response = await fetch("https://cgd-fastapi.onrender.com/health");
+    // Check backend status
+    const response = await fetch(`${API_URL}/health`);
     backend_status = await response.json();
+    console.log("Backend status:", backend_status);
+    if (backend_status && backend_status.status == "ok") {
+      console.log("Backend is running and healthy.");
+    } else {
+      console.error("Backend is not healthy:", backend_status);
+      error = "Le backend n'est pas disponible. Veuillez réessayer plus tard.";
+    }
   });
 
   async function handleSubmit() {
@@ -19,13 +27,9 @@
     loading = true;
     error = null;
 
-    /* if (backend_status && backend_status.status == "ok") {
-            
-    } */
-
     try {
-      console.log("Envoi de la requête à /api/chatMistral");
-      const res = await fetch("/api/chatMistral", {
+      console.log(`Envoi de la requête à ${API_URL}/chatMistral`);
+      const res = await fetch(`${API_URL}/chatMistral`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,32 +57,34 @@
   }
 </script>
 
-<div class="chat-container">
-  <form on:submit|preventDefault={handleSubmit}>
-    <textarea
-      bind:value={prompt}
-      placeholder="Posez votre question..."
-      rows="4"
-      disabled={loading}
-    ></textarea>
-    <button type="submit" disabled={loading || !prompt.trim()}>
-      {loading ? "Envoi en cours..." : "Envoyer"}
-    </button>
-  </form>
+{#if backend_status && backend_status.status == "ok"}
+  <div class="chat-container">
+    <form on:submit|preventDefault={handleSubmit}>
+      <textarea
+        bind:value={prompt}
+        placeholder="Posez votre question..."
+        rows="4"
+        disabled={loading}
+      ></textarea>
+      <button type="submit" disabled={loading || !prompt.trim()}>
+        {loading ? "Envoi en cours..." : "Envoyer"}
+      </button>
+    </form>
 
-  {#if error}
-    <div class="error">
-      <p>{error}</p>
-    </div>
-  {/if}
+    {#if error}
+      <div class="error">
+        <p>{error}</p>
+      </div>
+    {/if}
 
-  {#if response}
-    <div class="response">
-      <h3>Réponse:</h3>
-      <p>{response}</p>
-    </div>
-  {/if}
-</div>
+    {#if response}
+      <div class="response">
+        <h3>Réponse:</h3>
+        <p>{response}</p>
+      </div>
+    {/if}
+  </div>
+{/if}
 
 <style>
   .chat-container {
