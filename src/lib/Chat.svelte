@@ -10,16 +10,16 @@
 
   onMount(async () => {
     // Check backend status
-    console.log("API_URL = ", API_URL);
+    /* console.log("API_URL = ", API_URL); */
     const response = await fetch(`${API_URL}/health`);
     backend_status = await response.json();
-    console.log("Backend status:", backend_status);
+    /* console.log("Backend status:", backend_status);
     if (backend_status && backend_status.status == "ok") {
       console.log("Backend is running and healthy.");
     } else {
       console.error("Backend is not healthy:", backend_status);
       error = "Le backend n'est pas disponible. Veuillez réessayer plus tard.";
-    }
+    } */
   });
 
   async function handleSubmit() {
