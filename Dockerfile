@@ -1,4 +1,4 @@
-FROM node:slim as build
+FROM node:slim AS builder
 
 WORKDIR /app
 
@@ -21,7 +21,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copie des fichiers buildés directement dans le répertoire html de nginx
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
 
 # Copie de la configuration nginx
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
