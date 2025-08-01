@@ -2,21 +2,12 @@
   import { onMount } from "svelte";
   import { API_URL } from "$lib/config";
   import { chatMistral } from "$lib/cgd";
-  import SummaryButton from "$lib/Summary_button.svelte";
 
   let prompt = "";
   let question = "";
   let response = "";
   let loading = false;
   let error: string | null = null;
-  let backend_status: { status: string } | undefined = undefined;
-
-  onMount(async () => {
-    // Check backend status
-    /* console.log("API_URL = ", API_URL); */
-    const response = await fetch(`${API_URL}/health`);
-    backend_status = await response.json();
-  });
 
   async function handleSubmit() {
     if (!prompt.trim()) return;
@@ -37,41 +28,39 @@
   }
 </script>
 
-{#if backend_status && backend_status.status == "ok"}
-  <div class="chat-container">
-    <form on:submit|preventDefault={handleSubmit}>
-      <textarea
-        bind:value={prompt}
-        placeholder="Posez votre question..."
-        rows="4"
-        disabled={loading}
-      ></textarea>
-      <button id="submit" type="submit" disabled={loading || !prompt.trim()}>
-        {loading ? "Envoi en cours..." : "Envoyer"}
-      </button>
-    </form>
+<div class="chat-container">
+  <form on:submit|preventDefault={handleSubmit}>
+    <textarea
+      bind:value={prompt}
+      placeholder="Posez votre question..."
+      rows="4"
+      disabled={loading}
+    ></textarea>
+    <button id="submit" type="submit" disabled={loading || !prompt.trim()}>
+      {loading ? "Envoi en cours..." : "Envoyer"}
+    </button>
+  </form>
 
-    {#if error}
-      <div class="error">
-        <p>{error}</p>
-      </div>
-    {/if}
+  {#if error}
+    <div class="error">
+      <p>{error}</p>
+    </div>
+  {/if}
 
-    {#if question}
-      <div class="response">
-        <h3>Votre question :</h3>
-        <p>{question}</p>
-      </div>
-    {/if}
+  {#if question}
+    <div class="response">
+      <h3>Votre question :</h3>
+      <p>{question}</p>
+    </div>
+  {/if}
 
-    {#if response}
-      <div class="response">
-        <h3>Réponse du Chat Mistral :</h3>
-        <p>{response}</p>
-      </div>
-    {/if}
-  </div>
-{/if}
+  {#if response}
+    <div class="response">
+      <h3>Réponse du Chat Mistral :</h3>
+      <p>{response}</p>
+    </div>
+  {/if}
+</div>
 
 <style>
   .chat-container {

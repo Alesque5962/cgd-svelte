@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import { API_URL } from "$lib/config";
   import { chatMistral } from "$lib/cgd";
-  import SummaryButton from "$lib/Summary_button.svelte";
 
   let media: any[] = [];
   let mediaRecorder: any = null;
@@ -14,11 +13,6 @@
   let backend_status: { status: string } | undefined = undefined;
 
   onMount(async () => {
-    // Check backend status
-    /* console.log("API_URL = ", API_URL); */
-    const response = await fetch(`${API_URL}/health`);
-    backend_status = await response.json();
-
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = (e: any) => media.push(e.data);
@@ -68,37 +62,35 @@
   }
 </script>
 
-{#if backend_status && backend_status.status == "ok"}
-  <div class="transcript-container">
-    <section>
-      <audio controls></audio>
-      <div class="recording">
-        <button on:click={startRecording}>Démarrer</button>
-        <button on:click={stopRecording}>Arrêter</button>
-      </div>
-    </section>
+<div class="transcript-container">
+  <section>
+    <audio controls></audio>
+    <div class="recording">
+      <button on:click={startRecording}>Démarrer</button>
+      <button on:click={stopRecording}>Arrêter</button>
+    </div>
+  </section>
 
-    {#if error}
-      <div class="error">
-        <p>{error}</p>
-      </div>
-    {/if}
+  {#if error}
+    <div class="error">
+      <p>{error}</p>
+    </div>
+  {/if}
 
-    {#if prompt}
-      <div class="response">
-        <h3>Votre question formulée par le serveur Voxtral:</h3>
-        <p>{prompt}</p>
-      </div>
-    {/if}
+  {#if prompt}
+    <div class="response">
+      <h3>Votre question formulée par le serveur Voxtral:</h3>
+      <p>{prompt}</p>
+    </div>
+  {/if}
 
-    {#if response}
-      <div class="response">
-        <h3>Réponse du Chat Mistral :</h3>
-        <p>{response}</p>
-      </div>
-    {/if}
-  </div>
-{/if}
+  {#if response}
+    <div class="response">
+      <h3>Réponse du Chat Mistral :</h3>
+      <p>{response}</p>
+    </div>
+  {/if}
+</div>
 
 <style>
   section {

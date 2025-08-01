@@ -1,5 +1,15 @@
-<script>
+<script lang="ts">
   import { goto } from "$app/navigation";
+  import { API_URL } from "$lib/config";
+  import { onMount } from "svelte";
+
+  let backend_status: { status: string } | undefined = undefined;
+
+  onMount(async () => {
+    // Check backend status
+    const response = await fetch(`${API_URL}/health`);
+    backend_status = await response.json();
+  });
 </script>
 
 <main>
