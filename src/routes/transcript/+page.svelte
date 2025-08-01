@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { API_URL } from "$lib/config";
-  import { chatMistral } from "../cgd.js";
+  import { chatMistral } from "$lib/cgd";
+  import { goto } from "$app/navigation";
 
   let media: any[] = [];
   let mediaRecorder: any = null;
@@ -96,6 +97,9 @@
     {/if}
   </div>
 {/if}
+<div>
+  <button on:click={() => goto("/")}>Revenir au sommaire</button>
+</div>
 
 <style>
   button {
