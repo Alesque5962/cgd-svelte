@@ -1,12 +1,12 @@
 <script>
-  import Whisper from "$lib/Whisper.svelte";
+  import Transcript from "$lib/Transcript.svelte";
   import Chat from "../lib/Chat.svelte";
 </script>
 
 <main>
   <h1>C'est grave docteur ?</h1>
   <!-- <Chat /> -->
-  <Whisper />
+  <Transcript />
 </main>
 
 <style>

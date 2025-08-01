@@ -1,8 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { API_URL } from "$lib/config";
+  import { chatMistral } from "../../../frontend/src/cgd.js";
 
   let prompt = "";
+  let question = "";
   let response = "";
   let loading = false;
   let error: string | null = null;
@@ -13,40 +15,16 @@
     /* console.log("API_URL = ", API_URL); */
     const response = await fetch(`${API_URL}/health`);
     backend_status = await response.json();
-    /* console.log("Backend status:", backend_status);
-    if (backend_status && backend_status.status == "ok") {
-      console.log("Backend is running and healthy.");
-    } else {
-      console.error("Backend is not healthy:", backend_status);
-      error = "Le backend n'est pas disponible. Veuillez réessayer plus tard.";
-    } */
   });
 
   async function handleSubmit() {
     if (!prompt.trim()) return;
 
     loading = true;
-    error = null;
 
     try {
-      console.log(`Envoi de la requête à ${API_URL}/chatMistral`);
-      const res = await fetch(`${API_URL}/chatMistral`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-      });
-      console.log("Réponse du serveur:", res);
-      console.log("Corps de la requête:", JSON.stringify({ prompt }));
-
-      if (!res.ok) {
-        throw new Error(`Erreur ${res.status}: ${await res.text()}`);
-      }
-
-      const data = await res.json();
-      console.log("Réponse du serveur:", data);
-      response = data.response;
+      question = prompt; // Store the question before sending
+      response = await chatMistral(prompt);
       prompt = ""; // Réinitialise le prompt après l'envoi
     } catch (err) {
       console.error("Erreur:", err);
@@ -78,9 +56,16 @@
       </div>
     {/if}
 
+    {#if question}
+      <div class="response">
+        <h3>Votre question :</h3>
+        <p>{question}</p>
+      </div>
+    {/if}
+
     {#if response}
       <div class="response">
-        <h3>Réponse:</h3>
+        <h3>Réponse du Chat Mistral :</h3>
         <p>{response}</p>
       </div>
     {/if}
