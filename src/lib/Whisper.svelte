@@ -52,15 +52,14 @@
       audio.src = window.URL.createObjectURL(audioBlob);
 
       try {
-        console.log(`Envoi de la requête à ${API_URL}/whisper`);
-
         /* const audioBlob = new Blob(this.recordedChunks, { type: "audio/mp3" }); */
         /* const formData = new FormData();
-      const file = new File([audioBlob], "audio.mp3", { type: "audio/mp3" });
-      formData.append("file", file, "audio.mp3"); */
+        const file = new File([audioBlob], "audio.mp3", { type: "audio/mp3" });
+        formData.append("file", file, "audio.mp3"); */
         /* formData.append("model", "whisper-1"); */
 
-        const res = await fetch(`${API_URL}/whisper`, {
+        console.log(`Envoi de la requête à ${API_URL}/voxtral`);
+        const res = await fetch(`${API_URL}/voxtral`, {
           method: "POST",
           /* headers: {
             "Content-Type": "multipart/form-data",
