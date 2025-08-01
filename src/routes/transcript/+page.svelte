@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { API_URL } from "$lib/config";
   import { chatMistral } from "$lib/cgd";
-  import { goto } from "$app/navigation";
+  import SummaryButton from "$lib/Summary_button.svelte";
 
   let media: any[] = [];
   let mediaRecorder: any = null;
@@ -69,11 +69,13 @@
 </script>
 
 {#if backend_status && backend_status.status == "ok"}
-  <div>
+  <div class="transcript-container">
     <section>
       <audio controls></audio>
-      <button on:click={startRecording}>Record</button>
-      <button on:click={stopRecording}>Stop</button>
+      <div class="recording">
+        <button on:click={startRecording}>Démarrer</button>
+        <button on:click={stopRecording}>Arrêter</button>
+      </div>
     </section>
 
     {#if error}
@@ -97,13 +99,31 @@
     {/if}
   </div>
 {/if}
-<div>
-  <button on:click={() => goto("/")}>Revenir au sommaire</button>
-</div>
 
 <style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  audio {
+    width: 50%;
+    margin-top: 1vh;
+  }
+
+  .recording {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+  }
+
   button {
-    padding: 10px 20px;
+    width: 10vw;
+    padding: 2vh 1vw;
+    margin-top: 5vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
     background-color: #4caf50;
     color: white;
     border: none;
@@ -119,6 +139,12 @@
   button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+  }
+
+  .transcript-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
   }
 
   .response,

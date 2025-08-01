@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { API_URL } from "$lib/config";
   import { chatMistral } from "$lib/cgd";
-  import { goto } from "$app/navigation";
+  import SummaryButton from "$lib/Summary_button.svelte";
 
   let prompt = "";
   let question = "";
@@ -46,7 +46,7 @@
         rows="4"
         disabled={loading}
       ></textarea>
-      <button type="submit" disabled={loading || !prompt.trim()}>
+      <button id="submit" type="submit" disabled={loading || !prompt.trim()}>
         {loading ? "Envoi en cours..." : "Envoyer"}
       </button>
     </form>
@@ -72,9 +72,6 @@
     {/if}
   </div>
 {/if}
-<div>
-  <button on:click={() => goto("/")}>Revenir au sommaire</button>
-</div>
 
 <style>
   .chat-container {
@@ -93,13 +90,19 @@
   }
 
   button {
-    padding: 10px 20px;
+    width: 10vw;
+    padding: 2vh 1vw;
+    margin-top: 2.5vh;
     background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+  }
+
+  #submit {
+    margin-top: 1vh;
   }
 
   button:hover:not(:disabled) {
