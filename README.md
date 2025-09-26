@@ -8,7 +8,23 @@ Déploiement effectué sur Render, projet accessible [ici](https://cgd-svelte.on
 
 Lancement du projet en mode developement :
 ------------------------------------------
-Exécuter `npm run rev`  
+`npm run rev`  
 Se rendre à l'adresse localhost:5173 (serveur Svelte).  
+
+Lancement des tests E2E côté frontend (Svelte) :
+----------------------------------------------------
+
+* Construction de l'application  
+`npm run build`  
+
+* Exécution de tous les tests  
+`npx playwright test`  
+
+* Exécution des tests d'un seul composant  
+`npx playwright test chat.spec.ts`  
+`npx playwright test transcript.spec.ts`  
+
+* Mode debug visuel  
+`npx playwright test --debug`  
 
 
