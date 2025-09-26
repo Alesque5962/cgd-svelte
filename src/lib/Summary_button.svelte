@@ -1,17 +1,13 @@
-<script>
+<script lang="ts">
+  import { page } from "$app/state";
   import { goto } from "$app/navigation";
 </script>
 
-<!-- <button on:click={() => goto("/")}><img src="frontend/assets/img/return.jpg"></button> -->
-<button on:click={() => goto("/")}>Menu</button>
-
-<!-- <input
-  on:click={() => goto("/")}
-  type="image"
-  id="image"
-  alt="icone"
-  src="/frontend/assets/img/return.jpg"
-/> -->
+{#if page.url.pathname !== "/"}
+  <button onclick={() => goto("/")}>Menu</button>
+{:else}
+  <button style="visibility: hidden;" onclick={() => goto("/")}>Menu</button>
+{/if}
 
 <style>
   button {
