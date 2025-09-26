@@ -10,7 +10,6 @@
   let response: Promise<string>;
   let loading = false;
   let error: string | null = null;
-  let backend_status: { status: string } | undefined = undefined;
 
   onMount(async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -35,26 +34,21 @@
       audio.src = window.URL.createObjectURL(audioBlob);
 
       try {
-        console.log(`Envoi de la requête à ${API_URL}/voxtral`);
         const res = await fetch(`${API_URL}/voxtral`, {
           method: "POST",
           body: formData,
         });
-        console.log("Réponse du serveur:", res);
 
         if (!res.ok) {
           throw new Error(`Erreur ${res.status}: ${await res.text()}`);
         }
 
         const data = await res.json();
-        console.log("Réponse du serveur Voxtral:", data);
         prompt = data.response;
-        media = []; /* We reset our media array */
+        media = []; /* Reset media array */
 
         response = await chatMistral(prompt);
-        console.log("Réponse du serveur Chat Mistral :", response);
       } catch (err) {
-        console.error("Erreur:", err);
         error =
           "Une erreur est survenue lors de la communication avec le serveur";
       }
@@ -107,7 +101,6 @@
   .recording {
     display: flex;
     justify-content: center;
-    /* margin-top: 20px; */
   }
 
   button {

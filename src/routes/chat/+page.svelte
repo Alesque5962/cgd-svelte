@@ -15,7 +15,7 @@
     try {
       question = prompt; // Store the question before sending
       response = await chatMistral(prompt);
-      prompt = ""; // Réinitialise le prompt après l'envoi
+      prompt = ""; // Reinitialise prompt after sending
     } catch (err) {
       console.error("Erreur:", err);
       error =

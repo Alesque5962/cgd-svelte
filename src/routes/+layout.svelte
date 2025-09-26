@@ -1,15 +1,9 @@
 <script lang="ts">
-  import { page } from "$app/state";
   import SummaryButton from "$lib/Summary_button.svelte";
 
   let { children } = $props();
 </script>
 
-<!-- {#if page.url.pathname !== "/"}
-  <SummaryButton />
-{:else}
-  <div style="margin-top: 5vh;"></div>
-{/if} -->
 <SummaryButton />
 <h1>C'est grave docteur ?</h1>
 
