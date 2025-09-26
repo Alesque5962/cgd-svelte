@@ -4,7 +4,6 @@ let error: string | null = null;
 
 export async function chatMistral(prompt: string) {
   try {
-    console.log(`Envoi de la requête à ${API_URL}/chatMistral`);
     const res = await fetch(`${API_URL}/chatMistral`, {
       method: "POST",
       headers: {

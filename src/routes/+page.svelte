@@ -9,7 +9,6 @@
     // Check backend status
     const response = await fetch(`${API_URL}/health`);
     backend_status = await response.json();
-    console.log("Backend status:", backend_status);
   });
 </script>
 
