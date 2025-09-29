@@ -6,43 +6,68 @@
   let backend_status: { status: string } | undefined = undefined;
 
   onMount(async () => {
-    // Check backend status
     const response = await fetch(`${API_URL}/health`);
     backend_status = await response.json();
   });
 </script>
 
 <main>
-  <button on:click={() => goto("/chat")}>Ecrire ma question</button>
-  <button on:click={() => goto("/transcript")}>Dicter ma question</button>
+  <div class="buttons-container">
+    <button on:click={() => goto("/chat")}>Ecrire ma question</button>
+    <button on:click={() => goto("/transcript")}>Dicter ma question</button>
+  </div>
 </main>
 
 <style>
   main {
-    padding: 8vh;
-    max-width: 1200px;
+    padding: clamp(1rem, 5vh, 4rem);
+    max-width: var(--max-width);
     margin: 0 auto;
-    text-align: center;
+    width: 100%;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
   }
 
   button {
-    padding: 2vh 2vw;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    background-color: #4caf50;
+    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(1rem, 3vw, 2rem);
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    min-width: 200px;
   }
 
   button:hover:not(:disabled) {
-    background-color: #45a049;
+    background-color: var(--primary-hover);
   }
 
   button:disabled {
-    background-color: #cccccc;
+    background-color: var(--disabled-color);
     cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      padding: var(--padding-mobile);
+    }
+
+    .buttons-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    button {
+      width: 100%;
+      margin: 0;
+    }
   }
 </style>

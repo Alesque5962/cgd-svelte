@@ -1,22 +1,43 @@
 <script lang="ts">
+  import "../app.css";
   import SummaryButton from "$lib/Summary_button.svelte";
-
-  let { children } = $props();
 </script>
 
-<SummaryButton />
-<h1>C'est grave docteur ?</h1>
-
-{@render children()}
+<div class="layout">
+  <SummaryButton />
+  <h1>C'est grave docteur ?</h1>
+  <slot />
+</div>
 
 <style>
+  .layout {
+    min-height: 100vh;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(1rem, 5vh, 2rem);
+  }
+
   h1 {
     border: 0.3rem solid #333;
-    text-align: center !important;
-    color: #333;
+    border-radius: 4px;
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 3rem);
     background-color: rgba(82, 78, 78, 0.068);
-    padding: 1vh 2vw;
-    margin-left: 38vw;
-    margin-right: 38vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-bottom: 5vh;
+  }
+
+  @media (max-width: 768px) {
+    .layout {
+      padding: var(--padding-mobile);
+    }
+
+    h1 {
+      margin-left: 15vw;
+      margin-right: 15vw;
+      margin-bottom: 5vh;
+    }
   }
 </style>
