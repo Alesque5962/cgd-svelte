@@ -11,10 +11,10 @@
 
 <style>
   button {
-    width: 3vw;
-    padding: 1vh 0.5vw;
+    padding: clamp(0.25rem, 1vh, 0.75rem) clamp(0.5rem, 1.5vw, 1rem);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    min-width: 5rem;
     margin-top: 5vh;
-    margin-left: 30vw;
     background-color: #4caf50;
     color: white;
     border: none;

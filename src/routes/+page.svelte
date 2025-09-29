@@ -22,7 +22,7 @@
   main {
     padding: clamp(1rem, 5vh, 4rem);
     max-width: var(--max-width);
-    margin: 0 auto;
+    margin: 15vh auto;
     width: 100%;
   }
 
@@ -43,7 +43,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: clamp(1rem, 2vw, 1.25rem);
-    min-width: 200px;
+    min-width: clamp(5rem, 50vw, 15rem);
   }
 
   button:hover:not(:disabled) {
@@ -62,11 +62,11 @@
 
     .buttons-container {
       flex-direction: column;
-      align-items: stretch;
+      align-items: center;
     }
 
     button {
-      width: 100%;
+      width: 25%;
       margin: 0;
     }
   }

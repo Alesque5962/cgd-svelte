@@ -16,6 +16,7 @@
     max-width: var(--max-width);
     margin: 0 auto;
     padding: clamp(1rem, 5vh, 2rem);
+    text-align: center;
   }
 
   h1 {
@@ -24,9 +25,7 @@
     text-align: center;
     font-size: clamp(1.5rem, 5vw, 3rem);
     background-color: rgba(82, 78, 78, 0.068);
-    margin-left: 15vw;
-    margin-right: 15vw;
-    margin-bottom: 5vh;
+    margin: 5vh 15vw 0vh 15vw;
   }
 
   @media (max-width: 768px) {
@@ -35,9 +34,7 @@
     }
 
     h1 {
-      margin-left: 15vw;
-      margin-right: 15vw;
-      margin-bottom: 5vh;
+      margin: 5vh 15vw 0vh 15vw;
     }
   }
 </style>

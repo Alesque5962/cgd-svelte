@@ -34,7 +34,7 @@
       rows="4"
       disabled={loading}
     ></textarea>
-    <button id="submit" type="submit" disabled={loading || !prompt.trim()}>
+    <button type="submit" disabled={loading || !prompt.trim()}>
       {loading ? "Envoi en cours..." : "Envoyer"}
     </button>
   </form>
@@ -62,42 +62,40 @@
 
 <style>
   .chat-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    padding: clamp(1rem, 5vh, 4rem);
+    max-width: var(--max-width);
   }
 
   textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin: 2vh auto 5vh auto;
     border-radius: 4px;
     border: 1px solid #ccc;
-    resize: vertical;
   }
 
   button {
-    width: 10vw;
-    padding: 2vh 1vw;
-    margin-top: 2.5vh;
-    background-color: #4caf50;
+    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(1rem, 3vw, 2rem);
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-
-  #submit {
-    margin-top: 1vh;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    min-width: clamp(5rem, 50vw, 15rem);
   }
 
   button:hover:not(:disabled) {
-    background-color: #45a049;
+    background-color: var(--primary-hover);
   }
 
   button:disabled {
-    background-color: #cccccc;
+    background-color: var(--disabled-color);
     cursor: not-allowed;
   }
 
@@ -115,5 +113,20 @@
   .error {
     background-color: #ffebee;
     color: #c62828;
+  }
+
+  @media (max-width: 768px) {
+    .chat-container {
+      padding: var(--padding-mobile);
+    }
+
+    textarea {
+      margin: 3.5vh auto 5vh auto;
+    }
+
+    button {
+      width: 25%;
+      margin: 0;
+    }
   }
 </style>
