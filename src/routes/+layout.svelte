@@ -1,12 +1,14 @@
 <script lang="ts">
   import "../app.css";
   import SummaryButton from "$lib/Summary_button.svelte";
+
+  let { children } = $props();
 </script>
 
 <div class="layout">
   <SummaryButton />
   <h1>C'est grave docteur ?</h1>
-  <slot />
+  {@render children()}
 </div>
 
 <style>

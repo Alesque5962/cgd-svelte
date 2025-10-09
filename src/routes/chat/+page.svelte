@@ -1,27 +1,26 @@
 <script lang="ts">
-  import { chatMistral } from "$lib/cgd";
+  import { chatMistral } from '$lib/cgd'
 
-  let prompt = "";
-  let question = "";
-  let response = "";
-  let loading = false;
-  let error: string | null = null;
+  let prompt = ''
+  let question = ''
+  let response = ''
+  let loading = false
+  let error: string | null = null
 
   async function handleSubmit() {
-    if (!prompt.trim()) return;
+    if (!prompt.trim()) return
 
-    loading = true;
+    loading = true
 
     try {
-      question = prompt; // Store the question before sending
-      response = await chatMistral(prompt);
-      prompt = ""; // Reinitialise prompt after sending
+      question = prompt // Store the question before sending
+      response = await chatMistral(prompt)
+      prompt = '' // Reinitialise prompt after sending
     } catch (err) {
-      console.error("Erreur:", err);
-      error =
-        "Une erreur est survenue lors de la communication avec le serveur";
+      console.error('Erreur:', err)
+      error = 'Une erreur est survenue lors de la communication avec le serveur'
     } finally {
-      loading = false;
+      loading = false
     }
   }
 </script>
@@ -34,8 +33,8 @@
       rows="4"
       disabled={loading}
     ></textarea>
-    <button type="submit" disabled={loading || !prompt.trim()}>
-      {loading ? "Envoi en cours..." : "Envoyer"}
+    <button id="submit" type="submit" disabled={loading || !prompt.trim()}>
+      {loading ? 'Envoi en cours...' : 'Envoyer'}
     </button>
   </form>
 
