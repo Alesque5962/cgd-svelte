@@ -20,7 +20,7 @@ export class CgdFrontend {
     dockerUsername: string = "",
     dockerPassword: string = ""
   ): Promise<string> {
-    /* await this.runTests(source); */
+    await this.runTests(source);
     /* if (dockerUsername == "" || dockerPassword == "") {
       dockerUsername = process.env.DOCKER_USERNAME;
       dockerPassword = process.env.DOCKER_USERNAME;
