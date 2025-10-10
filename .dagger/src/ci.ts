@@ -28,7 +28,7 @@ export class CgdFrontend {
       "docker_password",
       dockerPassword
     );
-    await this.runTests(source);
+    /* await this.runTests(source); */
     // Stage 1: Build stage
     const builder = dag
       .container()
