@@ -14,13 +14,12 @@ export class CgdFrontend {
   async dockerBuildPublish(
     @argument({
       defaultPath: "/",
-      ignore: ["node_modules", "build", ".svelte-kit"],
+      ignore: ["node_modules", "build"],
     })
     source: Directory,
     dockerUsername: string = "",
     dockerPassword: string = ""
   ): Promise<string> {
-    await this.runTests(source);
     /* if (dockerUsername == "" || dockerPassword == "") {
       dockerUsername = process.env.DOCKER_USERNAME;
       dockerPassword = process.env.DOCKER_USERNAME;
@@ -29,33 +28,31 @@ export class CgdFrontend {
       "docker_password",
       dockerPassword
     );
+    await this.runTests(source);
     // Stage 1: Build stage
     const builder = dag
       .container()
       .from("node:23.11.0-slim")
       .withWorkdir("/app")
-      .withFile("/app/package.json", source.file("package.json"))
-      .withFile("/app/package-lock.json", source.file("package-lock.json"))
       .withMountedCache("/root/.npm", dag.cacheVolume("node"))
-      .withExec(["npm", "install"])
       .withDirectory("/app", source)
+      .withExec(["npm", "ci"])
       .withExec(["npm", "install", "--save-dev", "@sveltejs/adapter-static"])
       .withEnvVariable("NODE_ENV", "production")
-      .withExec(["npm", "run", "build"])
-      .directory("./dist");
+      .withExec(["npm", "run", "build"]);
 
     // Stage 2: Production stage
     const build = dag
       .container()
       .from("nginx:1.29.2-alpine")
-      .withDirectory("/usr/share/nginx/html", builder)
+      .withDirectory("/usr/share/nginx/html", builder.directory("/app/build"))
       .withFile(
         "/etc/nginx/conf.d/default.conf",
         source.file("nginx/nginx.conf")
       )
       .withRegistryAuth("docker.io", dockerUsername, secretDockerPassword)
-      .withExposedPort(80);
-    /* .withExec(["nginx", "-g", "daemon off;"]); */
+      .withExposedPort(80)
+      .withDefaultArgs(["nginx", "-g", "daemon off;"]);
 
     // Publication sur DockerHub
     console.log("🚀 Publication on DockerHub...");
