@@ -73,15 +73,15 @@
 
   {#if prompt}
     <div class="response">
-      <h3>Votre question formulée par le serveur Voxtral:</h3>
-      <p>{prompt}</p>
+      <h3 id="h3-prompt">Votre question formulée par le serveur Voxtral:</h3>
+      <p id="voxral-prompt">{prompt}</p>
     </div>
   {/if}
 
   {#if response}
     <div class="response">
-      <h3>Réponse du Chat Mistral :</h3>
-      <p>{response}</p>
+      <h3 id="h3-response">Réponse du Chat Mistral :</h3>
+      <p id="mistral-response">{response}</p>
     </div>
   {/if}
 </div>

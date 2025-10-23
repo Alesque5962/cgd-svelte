@@ -1,26 +1,27 @@
 <script lang="ts">
-  import { chatMistral } from '$lib/cgd'
+  import { chatMistral } from "$lib/cgd";
 
-  let prompt = ''
-  let question = ''
-  let response = ''
-  let loading = false
-  let error: string | null = null
+  let prompt = "";
+  let question = "";
+  let response = "";
+  let loading = false;
+  let error: string | null = null;
 
   async function handleSubmit() {
-    if (!prompt.trim()) return
+    if (!prompt.trim()) return;
 
-    loading = true
+    loading = true;
 
     try {
-      question = prompt // Store the question before sending
-      response = await chatMistral(prompt)
-      prompt = '' // Reinitialise prompt after sending
+      question = prompt; // Store the question before sending
+      response = await chatMistral(prompt);
+      prompt = ""; // Reinitialise prompt after sending
     } catch (err) {
-      console.error('Erreur:', err)
-      error = 'Une erreur est survenue lors de la communication avec le serveur'
+      console.error("Erreur:", err);
+      error =
+        "Une erreur est survenue lors de la communication avec le serveur";
     } finally {
-      loading = false
+      loading = false;
     }
   }
 </script>
@@ -34,7 +35,7 @@
       disabled={loading}
     ></textarea>
     <button id="submit" type="submit" disabled={loading || !prompt.trim()}>
-      {loading ? 'Envoi en cours...' : 'Envoyer'}
+      {loading ? "Envoi en cours..." : "Envoyer"}
     </button>
   </form>
 
@@ -45,14 +46,14 @@
   {/if}
 
   {#if question}
-    <div class="response">
+    <div class="question-response" id="question">
       <h3>Votre question :</h3>
       <p>{question}</p>
     </div>
   {/if}
 
   {#if response}
-    <div class="response">
+    <div class="question-response" id="response">
       <h3>Réponse du Chat Mistral :</h3>
       <p>{response}</p>
     </div>
@@ -98,14 +99,14 @@
     cursor: not-allowed;
   }
 
-  .response,
+  .question-response,
   .error {
     margin-top: 20px;
     padding: 15px;
     border-radius: 4px;
   }
 
-  .response {
+  .question-response {
     background-color: #f5f5f5;
   }
 
