@@ -3,8 +3,8 @@
 Description :
 -------------
 
-API permettant à un utilisateur de poser une question, écrite ou vocale, à l'API Mistral (Chat ou Voxtral)  
-Déploiement effectué sur Render, projet accessible [ici](https://cgd-svelte.onrender.com)  
+API frontend permettant à un utilisateur de poser une question, écrite ou vocale, à l'API Mistral (Chat ou Voxtral)  
+Déploiement de l'application complète effectué sur Render, accessible [ici](https://cgd-svelte.onrender.com)  
 
 Run le projet en mode developement :
 ------------------------------------
@@ -31,9 +31,14 @@ Tests E2E avec Playwright :
 * Mode debug visuel  
 `npx playwright test --debug`  
 
-CI/CD avec Dagger :
--------------------
+Pipeline CI/CD :
+----------------
 
+Utilisation de Dagger.  
+
+* Exécution des tests E2E  
+`dagger call run-tests`  
+
+* Exécution du pipeline complet  
 `dagger call docker-build-publish`  
-Cette commande va : Lancer les tests avec playwright => Builder une image docker => Push sur Dockerhub  
-
+Lance les tests avec playwright, build une image docker, publie l'image sur Dockerhub.  
