@@ -10,6 +10,9 @@ import {
 
 @object()
 export class CgdFrontend {
+  /**
+   * Build and publish the Docker image to DockerHub
+   */
   @func()
   async dockerBuildPublish(
     @argument({
@@ -17,18 +20,36 @@ export class CgdFrontend {
       ignore: ["node_modules", "build"],
     })
     source: Directory,
-    dockerUsername: string = "",
-    dockerPassword: string = ""
+    dockerUsername: string | undefined = "",
+    dockerPassword: string | undefined = ""
   ): Promise<string> {
-    /* if (dockerUsername == "" || dockerPassword == "") {
-      dockerUsername = process.env.DOCKER_USERNAME;
-      dockerPassword = process.env.DOCKER_USERNAME;
-    } */
+    await this.runTests(source);
+    if (dockerUsername == "" || dockerPassword == "") {
+      // Reading .env file from source directory
+      const envContent = await source.file(".env").contents();
+      console.log(".env content = ", envContent);
+      // Extracting DOCKER_USERNAME and DOCKER_PASSWORD
+      for (const line of envContent.split("\n")) {
+        const [key, value] = line.split("=");
+        if (key.trim() === "DOCKER_USERNAME") {
+          dockerUsername = value.trim();
+          dockerUsername = dockerUsername.replace(/['"]+/g, "");
+        } else if (key.trim() === "DOCKER_PASSWORD") {
+          dockerPassword = value.trim();
+          dockerPassword = dockerPassword.replace(/['"]+/g, "");
+        }
+      }
+
+      if (dockerUsername == undefined || dockerPassword == undefined) {
+        throw new Error(
+          "Docker credentials are required. Set them as function arguments or environment variables."
+        );
+      }
+    }
     let secretDockerPassword: Secret = dag.setSecret(
       "docker_password",
       dockerPassword
     );
-    /* await this.runTests(source); */
     // Stage 1: Build stage
     const builder = dag
       .container()
