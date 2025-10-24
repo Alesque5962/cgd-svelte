@@ -6,20 +6,20 @@
   "display": "standalone",
   "protocol_handlers": [{ "protocol": "mailto", "url": "/newEmail?to=%s" }],
   "description": "Application permettant à un utilisateur de poser une question, écrite ou vocale, à l'API Mistral (Chat ou Voxtral).",
-  "lang": "French",
+  "lang": "fr-FR",
   "dir": "auto",
   "theme_color": "#000000",
   "background_color": "#000000",
   "orientation": "any",
   "icons": [
     {
-      "src": "static/appicon.png",
+      "src": "/appicon.png",
       "sizes": "750x750",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "static/appicon_rezized.png",
+      "src": "/appicon_rezized.png",
       "sizes": "375x375",
       "type": "image/png",
       "purpose": "any"
@@ -27,13 +27,13 @@
   ],
   "screenshots": [
     {
-      "src": "static/desktop_screen.png",
+      "src": "/desktop_screen.png",
       "sizes": "941x833",
       "type": "image/png",
       "description": "Un screenshot de la page d'accueil (desktop version)"
     },
     {
-      "src": "static/device_screen.png",
+      "src": "/device_screen.png",
       "sizes": "401x833",
       "type": "image/png",
       "description": "Un screenshot de la page d'accueil (device version)"
