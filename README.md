@@ -1,4 +1,4 @@
-# CGD-Frontend (C'est Grave Docteur)
+# CGD-Frontend (C'est Grave Docteur ?)
 
 Description :
 -------------
