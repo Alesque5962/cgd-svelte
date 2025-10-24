@@ -13,13 +13,13 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "%sveltekit.assets%/appicon.png",
+      "src": "/appicon.png",
       "sizes": "750x750",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "%sveltekit.assets%/appicon_rezized.png",
+      "src": "/appicon_rezized.png",
       "sizes": "375x375",
       "type": "image/png",
       "purpose": "any"
@@ -27,13 +27,13 @@
   ],
   "screenshots": [
     {
-      "src": "%sveltekit.assets%/desktop_screen.png",
+      "src": "/desktop_screen.png",
       "sizes": "941x833",
       "type": "image/png",
       "description": "Un screenshot de la page d'accueil (desktop version)"
     },
     {
-      "src": "%sveltekit.assets%/device_screen.png",
+      "src": "/device_screen.png",
       "sizes": "401x833",
       "type": "image/png",
       "description": "Un screenshot de la page d'accueil (device version)"
