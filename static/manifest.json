@@ -17,6 +17,12 @@
       "sizes": "750x750",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "appicon.png",
+      "sizes": "750x750",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "screenshots": [
