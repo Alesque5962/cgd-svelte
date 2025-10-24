@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%sveltekit.assets%/appicon.png" />
-    <link rel="manifest" href="../static/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
-          .register("../static/service-worker.js")
+          .register("/service-worker.js")
           .then(() => console.log("Service Worker registered"))
           .catch((err) =>
             console.log("Service Worker registration failed: ", err)
