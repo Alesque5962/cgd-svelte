@@ -14,7 +14,7 @@
   "icons": [
     {
       "src": "%sveltekit.assets%/appicon.png",
-      "sizes": "512x512",
+      "sizes": "750x750",
       "type": "image/png",
       "purpose": "maskable"
     }
