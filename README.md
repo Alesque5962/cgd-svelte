@@ -9,7 +9,7 @@ Déploiement de l'application complète effectué sur Render, accessible ici : [
 Run le projet en mode developement :
 ------------------------------------
 
-`npm run rev`  
+`npm run dev`  
 Se rendre à l'adresse localhost:5173 (serveur Vite).  
 
 Tests E2E avec Playwright :
