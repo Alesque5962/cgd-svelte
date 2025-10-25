@@ -15,11 +15,15 @@
     font-size: clamp(1rem, 2vw, 1.25rem);
     min-width: 5rem;
     margin-top: 5vh;
-    background-color: #4caf50;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+  }
+
+  button:hover:not(:disabled) {
+    background-color: var(--primary-hover);
   }
 </style>
