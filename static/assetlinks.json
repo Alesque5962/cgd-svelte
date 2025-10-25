@@ -1,8 +1,0 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.onrender.cgd_svelte.twa",
-        "sha256_cert_fingerprints": ["EB:9F:41:22:94:7C:59:B9:7E:DC:53:1C:6A:3E:74:EA:98:1E:C8:2A:B0:D1:AA:CF:C2:FB:AA:69:9A:EE:6A:B8"]
-      }
-    }]
