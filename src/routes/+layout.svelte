@@ -22,11 +22,11 @@
   }
 
   h1 {
-    border: 0.3rem solid #333;
-    border-radius: 4px;
+    border: none;
+    border-radius: 8px;
     text-align: center;
     font-size: clamp(1.5rem, 5vw, 3rem);
-    background-color: rgba(82, 78, 78, 0.068);
+    background-color: var(--primary-color);
     margin: 5vh 15vw 0vh 15vw;
   }
 
