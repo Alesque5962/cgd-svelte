@@ -70,6 +70,7 @@
     width: 50%;
     display: flex;
     justify-content: center;
+    text-align: center;
     gap: 1rem;
     flex-wrap: wrap;
     padding: 1rem;
