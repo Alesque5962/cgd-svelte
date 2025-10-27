@@ -6,11 +6,17 @@ Description :
 API Frontend permettant à un utilisateur de poser une question, écrite ou vocale, via l'API Mistral (LLM Le Chat ou Voxtral).  
 Déploiement de l'application complète effectué sur Render, accessible ici : [CGD](https://cgd-svelte.onrender.com)  
 
-Run le projet en mode developement :
+Exécuter localement le projet en mode developement :
 ------------------------------------
 
 `npm run dev`  
 Se rendre à l'adresse localhost:5173 (serveur Vite).  
+
+Exécuter localement le projet en mode production :
+------------------------------------
+
+`npm run build && npm run preview`  
+Se rendre à l'adresse localhost:4173 (serveur Vite). 
 
 Tests E2E avec Playwright :
 ---------------------------
