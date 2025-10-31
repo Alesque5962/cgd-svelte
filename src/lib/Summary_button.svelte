@@ -4,9 +4,9 @@
 </script>
 
 {#if page.url.pathname !== "/"}
-  <button onclick={() => goto("/")}>Menu</button>
+  <button on:click={() => goto("/")}>Menu</button>
 {:else}
-  <button style="visibility: hidden;" onclick={() => goto("/")}>Menu</button>
+  <button style="visibility: hidden;" on:click={() => goto("/")}>Menu</button>
 {/if}
 
 <style>
