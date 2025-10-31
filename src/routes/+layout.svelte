@@ -26,7 +26,8 @@
     border-radius: 8px;
     text-align: center;
     font-size: clamp(1.5rem, 5vw, 3rem);
-    background-color: var(--primary-color);
+    color: white;
+    background-color: var(--primary-hover);
     margin: 5vh 15vw 0vh 15vw;
   }
 
