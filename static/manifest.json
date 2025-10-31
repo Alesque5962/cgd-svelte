@@ -28,13 +28,13 @@
   "screenshots": [
     {
       "src": "desktop_screen.png",
-      "sizes": "941x833",
+      "sizes": "1791x1785",
       "type": "image/png",
       "description": "Un screenshot de la page d'accueil (desktop version)"
     },
     {
       "src": "device_screen.png",
-      "sizes": "401x833",
+      "sizes": "792x1433",
       "type": "image/png",
       "description": "Un screenshot de la page d'accueil (device version)"
     }
