@@ -122,7 +122,8 @@
     }
 
     textarea {
-      margin: 3.5vh auto 5vh auto;
+      width: 65%;
+      margin: 6vh auto 7.5vh auto;
     }
 
     button {
